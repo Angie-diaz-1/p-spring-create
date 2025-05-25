@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mariadb-pv
-  namespace: p-spring-create
+  namespace: mariadb-namespace
 
 spec:
   capacity:

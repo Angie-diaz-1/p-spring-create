@@ -13,7 +13,7 @@ spec:
         - containerPort: 8080
       env:
         - name: DB_HOST
-          value: mariadb.p-spring-create.svc.cluster.local
+          value: mariadb.mariadb-namespace.svc.cluster.local
         - name: DB_PORT
           value: "3306"
         - name: DB_USER
