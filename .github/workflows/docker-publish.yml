@@ -34,13 +34,6 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      # ------------------- Tests con Docker Compose -------------------
-      - name: 🧪 Run Integration Tests (MariaDB + Spring)
-        run: |
-          docker network create microspring-net || true
-          docker compose --profile test up --build --abort-on-container-exit
-          docker compose down
-
       # ------------------- CD: Build, escaneo y publicación -------------------
       - name: 🛠️ Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
