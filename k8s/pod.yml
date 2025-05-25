@@ -1,30 +1,34 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: p-go-create-pod
-  namespace: p-go-create
+  name: p-spring-create-pod
+  namespace: p-spring-create
   labels:
-    app: p-go-create
+    app: p-spring-create
 spec:
   containers:
-    - name: p-go-create-container
-      image: ghcr.io/angie-diaz-1/p-go-create:v1.0.11@sha256:f0c1992bdfa72e911e28b26ccf0e9de493b3d43a30aaff433c28e1c6dbda556f
+    - name: p-spring-create-container
+      image: ghcr.io/angie-diaz-1/p-spring-create:latest@sha256:402d8691276be7eac0d811f563d32bc339465b1dd62bd37d09bcc7c11b6dc6e8
       ports:
         - containerPort: 8080
       env:
-        - name: MONGO_URI
-          value: mongodb://mongo.default.svc.cluster.local:27017
-        - name: MONGO_DB_NAME
-          value: users_db
-        - name: MONGO_COLLECTION_NAME
-          value: users
-
+        - name: DB_HOST
+          value: mariadb.p-spring-create.svc.cluster.local
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_USER
+          value: root
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-secret
+              key: mariadb-root-password
       volumeMounts:
-        - name: mongo-data
+        - name: mariadb-data
           mountPath: /data
   volumes:
-    - name: mongo-data
+    - name: mariadb-data
       persistentVolumeClaim:
-        claimName: p-go-create-pvc
+        claimName: mariadb-pvc
   imagePullSecrets:
     - name: ghcr-secret

@@ -1,24 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: p-go-create-ingress
-  namespace: p-go-create
+  name: p-spring-create-ingress
+  namespace: p-spring-create
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /api/productos/crear
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /health/
-            pathType: Prefix
+          - path: /spring-crear
+            pathType: ImplementationSpecific
             backend:
               service:
-                name: p-go-create-service
-                port:
-                  number: 8080
-          - path: /users
-            pathType: Prefix
-            backend:
-              service:
-                name: p-go-create-service
+                name: p-spring-create-service
                 port:
                   number: 8080

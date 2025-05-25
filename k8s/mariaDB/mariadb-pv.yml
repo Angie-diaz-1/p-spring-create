@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: p-spring-create-pv
+  name: mariadb-pv
+  namespace: p-spring-create
+
 spec:
   capacity:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: standard
   hostPath:
-    path: /data/p-spring-create
-  persistentVolumeReclaimPolicy: Retain
+    path: /data/mariadb
