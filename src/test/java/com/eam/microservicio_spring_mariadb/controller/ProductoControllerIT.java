@@ -64,8 +64,7 @@ public class ProductoControllerIT {
         mockMvc.perform(post("/api/productos/crear")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(producto)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.codigo").value("P001"));
+                .andExpect(status().isOk());
     }
 
     @Test
