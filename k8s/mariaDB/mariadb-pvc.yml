@@ -3,10 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pvc
   namespace: mariadb-namespace
-
+  labels:
+    app: mariadb
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: mariadb-storageclass
   resources:
     requests:
       storage: 1Gi

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset-p-spring-create
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: p-spring-create
+  template:
+    metadata:
+      labels:
+        app: p-spring-create
+    spec:
+      containers:
+        - name: contenedor
+          image: nginx
+          ports:
+            - containerPort: 80

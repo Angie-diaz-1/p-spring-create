@@ -3,7 +3,8 @@ kind: PersistentVolume
 metadata:
   name: mariadb-pv
   namespace: mariadb-namespace
-
+  labels:
+    app: mariadb
 spec:
   capacity:
     storage: 1Gi

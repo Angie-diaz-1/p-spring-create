@@ -5,6 +5,7 @@ metadata:
   namespace: p-spring-create
   labels:
     app: p-spring-create
+    workload: create
 spec:
   replicas: 1
   selector:
