@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRO: ghcr.io
-  REPO_NOMBRE_LOWER: Angie-diaz-1/p-spring-create
+  REPO_NOMBRE_LOWER: angie-diaz-1/p-spring-create
   DOCKERHUB_REPO: angiediazz/p-spring-create
 
 jobs:
