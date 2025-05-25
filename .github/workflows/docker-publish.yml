@@ -1,4 +1,4 @@
-name: Build and Push Docker Image - p-go-create
+name: Build and Push Docker Image - p-spring-create
 
 on:
   push:
@@ -23,8 +23,7 @@ jobs:
       id-token: write
 
     steps:
-      # ------------------- CI: Test y verificación -------------------
-
+      # ------------------- CI: Checkout y Java -------------------
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
@@ -35,34 +34,14 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: ✅ Run Unit Tests
+      # ------------------- Tests con Docker Compose -------------------
+      - name: 🧪 Run Integration Tests (MariaDB + Spring)
         run: |
-          echo "🧪 Running unit tests..."
-          ./mvnw test
-
-      - name: 🧪 Run Integration Tests (Testcontainers)
-        run: |
-          echo "🌐 Running integration tests..."
-          ./mvnw verify -DskipUnitTests
-
-      - name: 🌱 Create .env file (for Mongo and microservice)
-        run: |
-          echo "MONGO_ROOT_USER=${{ secrets.MONGO_ROOT_USER }}" > .env
-          echo "MONGO_ROOT_PASS=${{ secrets.MONGO_ROOT_PASS }}" >> .env
-          echo "MONGO_DB=${{ secrets.MONGO_DB }}" >> .env
-          echo "MONGO_HOST={{ secrets.MONGO_HOST }}" >> .env
-          echo "MONGO_PORT={{ secrets.MONGO_PORT }}" >> .env
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
-          echo "COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}" >> .env
-
-      - name: 🔁 Run Docker Compose Integration Test (mongo and create-service)
-        run: |
-          docker network create parcial_go_mongo_net || true
-          docker compose -f docker-compose-mongo.yml -f docker-compose.yml --env-file .env --profile test up --abort-on-container-exit
-          docker compose -f docker-compose-mongo.yml -f docker-compose.yml down
+          docker network create microspring-net || true
+          docker compose --profile test up --build --abort-on-container-exit
+          docker compose down
 
       # ------------------- CD: Build, escaneo y publicación -------------------
-
       - name: 🛠️ Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
