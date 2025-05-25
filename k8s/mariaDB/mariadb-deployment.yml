@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: mariadb
   namespace: mariadb-namespace
-
+  labels:
+    workload: db
 spec:
   selector:
     matchLabels:
