@@ -35,4 +35,7 @@ build/
 
 ### Secrets ###
 k8s/mariaDB/mariadb-secrets.yml
+k8s/mariaDB/dockerhub-secrets.yml
 k8s/create/create-secrets.yml
+k8s/create/dockerhub-secrets.yml
+
