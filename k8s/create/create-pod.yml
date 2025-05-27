@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: create-pod
+  namespace: p-spring-create
+  labels:
+    app: create-product
+spec:
+  nodeSelector:
+    workload: create
+  imagePullSecrets:
+    - name: ghcr-secret
+  containers:
+    - name: create-container
+      image: angiediazz/p-spring-create:latest
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - secretRef:
+            name: maria-create-secret
+      volumeMounts:
+        - name: mariadb-data
+          mountPath: /data
+  volumes:
+    - name: mariadb-data
+      persistentVolumeClaim:
+        claimName: mariadb-pvc

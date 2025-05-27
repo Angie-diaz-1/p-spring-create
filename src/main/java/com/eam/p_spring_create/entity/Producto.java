@@ -1,4 +1,4 @@
-package com.eam.microservicio_spring_mariadb.entity;
+package com.eam.p_spring_create.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

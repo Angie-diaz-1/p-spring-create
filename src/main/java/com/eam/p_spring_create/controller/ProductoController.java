@@ -1,7 +1,7 @@
-package com.eam.microservicio_spring_mariadb.controller;
+package com.eam.p_spring_create.controller;
 
-import com.eam.microservicio_spring_mariadb.entity.Producto;
-import com.eam.microservicio_spring_mariadb.service.ProductoService;
+import com.eam.p_spring_create.entity.Producto;
+import com.eam.p_spring_create.service.ProductoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

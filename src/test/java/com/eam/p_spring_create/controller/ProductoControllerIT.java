@@ -1,7 +1,7 @@
-package com.eam.microservicio_spring_mariadb.controller;
+package com.eam.p_spring_create.controller;
 
-import com.eam.microservicio_spring_mariadb.entity.Producto;
-import com.eam.microservicio_spring_mariadb.repository.ProductoRepository;
+import com.eam.p_spring_create.entity.Producto;
+import com.eam.p_spring_create.repository.ProductoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -32,3 +32,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Secrets ###
+k8s/mariaDB/mariadb-secrets.yml
+k8s/create/create-secrets.yml

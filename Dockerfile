@@ -8,6 +8,6 @@ RUN mvn clean package -DskipTests
 # Etapa 2: Imagen optimizada
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
-COPY --from=build /app/target/microservicio-spring-mariadb-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/p_spring_create-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]

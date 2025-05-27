@@ -2,13 +2,16 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pvc
-  namespace: mariadb-namespace
+  namespace: mariadb-ns
   labels:
     app: mariadb
 spec:
+  selector:
+    matchLabels:
+      app: mariadb 
   accessModes:
     - ReadWriteOnce
-  storageClassName: mariadb-storageclass
+  storageClassName: ""
   resources:
     requests:
       storage: 1Gi

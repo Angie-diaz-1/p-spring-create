@@ -1,15 +1,15 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
-  name: mariadb-deployment
+  name: mariadb-replicaset
   namespace: mariadb-ns
   labels:
     app: mariadb
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: mariadb
-  replicas: 1
   template:
     metadata:
       labels:

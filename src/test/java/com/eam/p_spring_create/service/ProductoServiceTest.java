@@ -13,9 +13,9 @@ import java.util.Optional;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
-import com.eam.microservicio_spring_mariadb.repository.ProductoRepository;
-import com.eam.microservicio_spring_mariadb.service.ProductoService;
-import com.eam.microservicio_spring_mariadb.entity.Producto;
+import com.eam.p_spring_create.repository.ProductoRepository;
+import com.eam.p_spring_create.service.ProductoService;
+import com.eam.p_spring_create.entity.Producto;
 
 @ExtendWith(MockitoExtension.class)
 class ProductoServiceTest {

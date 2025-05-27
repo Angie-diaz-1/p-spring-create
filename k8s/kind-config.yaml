@@ -3,32 +3,62 @@ apiVersion: kind.x-k8s.io/v1alpha4
 name: springboot-mariadb-cluster
 nodes:
   - role: control-plane
-    extraPortMappings:
-      - containerPort: 80
-        hostPort: 8080
-        protocol: TCP
     kubeadmConfigPatches:
       - |
         kind: InitConfiguration
         nodeRegistration:
           kubeletExtraArgs:
             node-labels: "ingress-ready=true"
-    extraMounts:
-      - hostPath: /data/mariadb
-        containerPath: /data/mariadb
-      - hostPath: /data/p-spring-create
-        containerPath: /data/p-spring-create
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+      - containerPort: 443
+        hostPort: 443
 
   - role: worker
-    extraMounts:
-      - hostPath: /data/mariadb
-        containerPath: /data/mariadb
-    labels:
-      workload: db
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "workload=mariadb"
 
   - role: worker
-    extraMounts:
-      - hostPath: /data/p-spring-create
-        containerPath: /data/p-spring-create
-    labels:
-      workload: create
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "workload=create"
+
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "workload=search"
+
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "workload=list"
+
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "workload=update"
+
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "workload=delete"

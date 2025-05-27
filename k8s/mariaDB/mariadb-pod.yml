@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mariadb-pod
+  namespace: mariadb-ns
+  labels:
+    app: mariadb
+spec:
+  nodeSelector:
+    workload: mariadb
+  containers:
+    - name: mariadb
+      image: mariadb:10.6
+      ports:
+        - containerPort: 3306
+      envFrom:
+        - secretRef:
+            name: maria-db-secret
+      volumeMounts:
+            - name: mariadb-data
+              mountPath: /var/lib/mysql
+  volumes:
+    - name: mariadb-data
+      persistentVolumeClaim:
+        claimName: mariadb-pvc
