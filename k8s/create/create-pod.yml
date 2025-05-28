@@ -18,10 +18,3 @@ spec:
       envFrom:
         - secretRef:
             name: maria-create-secret
-      volumeMounts:
-        - name: mariadb-data
-          mountPath: /data
-  volumes:
-    - name: mariadb-data
-      persistentVolumeClaim:
-        claimName: mariadb-pvc
