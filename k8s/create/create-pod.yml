@@ -9,7 +9,7 @@ spec:
   nodeSelector:
     workload: create
   imagePullSecrets:
-    - name: ghcr-secret
+    - name: dockerhub-secret
   containers:
     - name: create-container
       image: angiediazz/p-spring-create:latest

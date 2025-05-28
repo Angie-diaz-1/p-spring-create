@@ -17,6 +17,8 @@ spec:
     spec:
       nodeSelector:
         workload: mariadb
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
         - name: mariadb
           image: mariadb:10.6
